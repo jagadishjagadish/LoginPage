@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<link href=style.css type="text/css" rel=stylesheet>
+<script>
+    
+    /****** custom validation message and css *******/
+    function errorMsg(input) {
+        input.style.border = '1px solid #ff3f3f';
+        input.nextElementSibling.style.color = '#ff3f3f';
+        document.getElementById('error').innerHTML = "Please check your email address or your password";
+    }
+    
+    /****** basic custom validation *******/
+    function validateForm() {
+        if (document.loginForm.email.value == "" || document.loginForm.password.value == "") { 
+            var emailInput = document.loginForm.email;     // email input field
+            errorMsg(emailInput);
+            
+            var passwordInput = document.loginForm.password;   // password input field
+            errorMsg(passwordInput);
+        
+            return false;
+        } else if (document.loginForm.email) {
+            var emailInput = document.loginForm.email;
+            var emailId = emailElement.value.match(/@/g);   //to check valid mail id
+            if (!emailId) {
+                errorMsg(emailInput);
+                return false;
+            }
+        }
+    }
+    
+    /****** floating label css for email and password field *******/
+    function float(x) {
+        if (document.loginForm.email.value) {
+            var element = x.nextElementSibling.style;
+            element.top = '15px';
+            element.fontSize = '13px';
+        } else if (document.loginForm.password.value) {
+            var element = x.nextElementSibling.style;
+            element.top = '15px';
+            element.fontSize = '13px';
+        }
+    }    
+</script>
+</head>
+    
+<body>
+
+<div class="login-wrapper">  
+    <div class="login-view">
+        <header>
+            <i class='fas fa-user-circle' style='font-size:105px;color:#ffd35d;'></i>
+        </header>
+    
+        <form class="form-view" name="loginForm" action="" onsubmit="return validateForm()" method="post" >
+            <div>
+                <h2>Hello!</h2>
+                <h4>Please log In with your credentials.</h4>
+            </div>
+      
+            <div>
+                <div class="input-group">
+                <input type="text" name="email" onblur="float(this)">     
+                <label>Email address</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" onblur="float(this)">
+                <label>Password</label>
+            </div>
+            
+            <div id="error" class="err-msg"></div>
+            <button type="submit" >Login</button>
+            </div>
+
+            <div class="forgot-pwd">
+                <div><a href="#">Forgot your password?</a></div>
+                <div class="sign-up"><a href="#">Sign up</a></div>
+            </div>  
+        </form>
+    
+        <footer>
+            <p>Not yet a user?</p>
+            <p>By creating an account with our store, you will be able to move through the checkout process faster</p>
+        </footer>
+    </div>
+</div>
+    
+</body>
+</html>
